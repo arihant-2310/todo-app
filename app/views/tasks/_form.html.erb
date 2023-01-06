@@ -27,8 +27,8 @@
   </div>
 
   <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
+    <%= form.label :status, style: "display: block"%>
+    <%= form.select :status, Task.statuses.keys.map{ |key| [key.humanize, key] }, selected: task.status %>
   </div>
 
   <div>
