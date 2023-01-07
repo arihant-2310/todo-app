@@ -1,5 +1,15 @@
-<nav class="navbar">
+<nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <span class="navbar-brand mb-0 h1" id="logo">Task Manager</span>
+    <%= link_to "Task Manager", root_path, class: "navbar-brand mb-0 h1", id: "logo" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "Tasks", tasks_path, class: "nav-link active fs-5 text-white-50" %>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
