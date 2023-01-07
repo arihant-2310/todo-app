@@ -1,37 +1,45 @@
-<%= form_with(model: task) do |form| %>
-  <% if task.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+<div class="container">
+  <div class="row justify-content-center mt-4">
+    <div class="col-6">
+      <%= form_with(model: task, class: "shadow bg-white rounded p-3 mb-5") do |form| %>
+        <% if task.errors.any? %>
+          <div style="color: red">
+            <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-      <ul>
-        <% task.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+            <ul>
+              <% task.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+
+        <div class="form-group mb-4">
+          <%= form.label :name, class: "form-label" %>
+          <%= form.text_field :name, class: "form-control shadow rounded text-black-50" %>
+        </div>
+
+        <div class="form-group mb-4">
+          <%= form.label :description, class: "form-label" %>
+          <%= form.text_area :description, class: "form-control shadow rounded text-black-50" %>
+        </div>
+
+        <div class="form-group mb-4">
+          <%= form.label :due_date, class: "form-label" %>
+          <%= form.datetime_field :due_date, class: "form-control shadow rounded text-black-50"%>
+        </div>
+
+        <div class="form-group mb-4">
+          <%= form.label :status,  class: "form-label" %>
+          <%= form.select :status, Task.statuses.keys.map{ |key| [key.humanize, key] }, selected: task.status, class: "form-control" %>
+        </div>
+
+
+        <div class="d-grid">
+          <%= form.button "Submit", type: :submit, class: "btn btn-danger btn-block mb-4 btn-lg justify-content-center" %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
   </div>
+</div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :due_date, style: "display: block" %>
-    <%= form.datetime_field :due_date %>
-  </div>
-
-  <div>
-    <%= form.label :status, style: "display: block"%>
-    <%= form.select :status, Task.statuses.keys.map{ |key| [key.humanize, key] }, selected: task.status %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
