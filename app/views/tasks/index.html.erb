@@ -1,13 +1,9 @@
 <p style="color: green"><%= notice %></p>
+<h1 class="text-center mt-4">Listing all tasks</h1>
 
-<h1>Tasks</h1>
-
-<div id="tasks">
+<div class="container" id="tasks">
   <% @tasks.each do |task| %>
     <%= render task %>
-    <p>
-      <%= link_to "Show this task", task %>
-    </p>
   <% end %>
 </div>
 
