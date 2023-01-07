@@ -12,11 +12,8 @@
   </head>
 
   <body>
-  <nav class="navbar custom-nav-color">
-    <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">ToDo</span>
-    </div>
-  </nav>
+  <%= render 'layouts/navigation' %>
+  <%= render 'layouts/messages' %>
   <%= yield %>
   </body>
 </html>

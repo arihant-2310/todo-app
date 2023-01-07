@@ -1,3 +1,30 @@
-.custom-nav-color {
-  background-color: #e3f2fd;
+.navbar {
+  background-color: #DB4C3F;
+}
+
+#logo {
+  float: left;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+#home-container {
+   margin-top: 25px;
+}
+
+.home-create-tasks-img {
+  align-content: center;
+  height: 100%;
+  width: auto;
+  background-color: rebeccapurple;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
