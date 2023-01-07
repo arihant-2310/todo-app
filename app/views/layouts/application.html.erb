@@ -7,10 +7,16 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "custom", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
-    <%= yield %>
+  <nav class="navbar custom-nav-color">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">ToDo</span>
+    </div>
+  </nav>
+  <%= yield %>
   </body>
 </html>
