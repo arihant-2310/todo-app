@@ -1,14 +1,14 @@
-<% if current_user %>
-  <h2><%= current_user.email %></h2>
-  <%= image_tag(current_user.avatar_url) %>
-  <%= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
-<% else %>
-  <div class="container text-center" id="home-container">
+<div class="container text-center" id="home-container">
+  <% if current_user %>
+    <h2><%= current_user.email %></h2>
+    <%= image_tag(current_user.avatar_url) %>
+    <%= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
+  <% else %>
     <div class="p-5 rounded-lg m-3" id="home-jumbotron">
       <h1 class="display-4 fw-semibold">Organize your work</h1>
       <p class="lead fs-3">Todo app to create, manage and collaborate tasks with others.</p>
       <%= image_tag("create_tasks.png", alt: "Create Tasks", style: "height:auto;width:100%;") %>
       <%= link_to "Get Started", new_user_session_path, class: "btn btn-outline-primary btn-lg mt-2 mb-2" %>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
