@@ -1,5 +1,5 @@
 <div class="container text-center" id="home-container">
-  <% if current_user %>
+  <% if user_signed_in? %>
     <h2 class="font-monospace text-black-50"><%= "#{current_user.full_name.titleize} Profile" %></h2>
     <%= image_tag(current_user.avatar_url, class: "mt-2 mb-2") %>
     <p class="fs-5"><%= current_user.email %></p>
