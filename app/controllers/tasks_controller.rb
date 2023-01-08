@@ -10,9 +10,12 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @task.assignments.build
   end
 
-  def edit; end
+  def edit
+    @task.assignments.build if @task.assignments.size == 0
+  end
 
   def create
     @task = Task.new(task_params)
@@ -57,7 +60,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :description, :due_date, :status)
+    params.require(:task).permit(:name, :description, :due_date, :status, assignments_attributes: [:id, :user_id, :_destroy])
   end
 
   def require_same_user

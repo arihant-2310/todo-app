@@ -23,6 +23,16 @@
           <%= form.select :status, Task.statuses.keys.map{ |key| [key.humanize, key] }, selected: task.status, class: "form-control" %>
         </div>
 
+        <div class="form-group mb-4">
+          <%= form.fields_for :assignments do |assignment_form| %>
+            <%= assignment_form.label :assigned_to %>
+            <%= assignment_form.collection_select :user_id, User.all, :id, :email, { :include_blank => true, class: "form-control" } %> <br/>
+            <% if @task.assignments.first.id != nil %>
+              <%= assignment_form.check_box :_destroy %>
+              <%= assignment_form.label :_destroy, "Remove assignment" %>
+            <% end %>
+          <% end  %>
+        </div>
 
         <div class="d-grid">
           <%= form.button "Submit", type: :submit, class: "btn btn-danger btn-block mb-4 btn-lg justify-content-center" %>
