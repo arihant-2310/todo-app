@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
+  before_action :require_same_user, only: %i[edit update destroy show]
 
   def index
     @tasks = Task.all
@@ -57,5 +58,11 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:name, :description, :due_date, :status)
+  end
+
+  def require_same_user
+    return if current_user == @task.user
+
+    redirect_to(tasks_path, alert: 'You can only view, edit or delete your own task')
   end
 end
