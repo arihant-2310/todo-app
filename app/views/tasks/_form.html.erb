@@ -2,18 +2,7 @@
   <div class="row justify-content-center mt-4">
     <div class="col-6">
       <%= form_with(model: task, class: "shadow bg-white rounded p-3 mb-5") do |form| %>
-        <% if task.errors.any? %>
-          <div style="color: red">
-            <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
-
-            <ul>
-              <% task.errors.each do |error| %>
-                <li><%= error.full_message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-
+      <%= render 'shared/errors', obj: task %>
         <div class="form-group mb-4">
           <%= form.label :name, class: "form-label" %>
           <%= form.text_field :name, class: "form-control shadow rounded text-black-50" %>
