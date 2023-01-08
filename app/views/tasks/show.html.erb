@@ -3,7 +3,7 @@
   <div class="col-8 mt-4">
     <div class="card text-center shadow mb-5 bg-white rounded">
       <div class="card-header">
-        <span>By Arihant Hirawat</span>
+        <span>by <%= @task.user.full_name if @task.user %></span>
       </div>
       <div class="card-body">
         <div class="card-text"><%= simple_format(@task.description) %></div>
