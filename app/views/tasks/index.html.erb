@@ -1,8 +1,40 @@
 <h1 class="text-center mt-4">Listing all tasks</h1>
 
 <div class="container" id="tasks">
-  <% @tasks.each do |task| %>
-    <%= render task %>
-  <% end %>
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <button class="btn btn-outline-primary" id="list-view-btn" onclick=toggle_view("list")>List View</button>
+    </li>
+    <li class="nav-item">
+      <button class="btn" id="table-view-btn" onclick=toggle_view("table")>Table View</button>
+    </li>
+  </ul>
+  <div id="task-list-view">
+    <%= render @tasks, partial: "task", collection: @tasks %>
+  </div>
+
+  <div id="task-table-view" class="d-none">
+    <%= render "table", tasks: @tasks %>
+  </div>
 </div>
 
+<script>
+const toggle_view = (task_view) => {
+    const task_table =  document.getElementById('task-table-view');
+    const task_list =  document.getElementById('task-list-view');
+    const table_view_btn = document.getElementById('table-view-btn');
+    const list_view_btn = document.getElementById('list-view-btn');
+
+    if(task_view === 'table') {
+      task_table.classList.remove('d-none');
+      table_view_btn.classList.add('btn-outline-primary');
+      task_list.classList.add('d-none');
+      list_view_btn.classList.remove('btn-outline-primary');
+    } else {
+        task_table.classList.add('d-none');
+        task_list.classList.remove('d-none');
+        list_view_btn.classList.add('btn-outline-primary');
+        table_view_btn.classList.remove('btn-outline-primary');
+    }
+}
+</script>
