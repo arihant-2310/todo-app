@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :user
-  has_many :comments
-  has_many :users, through: :assignments
+  has_many :comments, dependent: :destroy
+  has_many :users, through: :assignments, dependent: :destroy
   has_many :assignments, dependent: :destroy
   accepts_nested_attributes_for :assignments, allow_destroy: true, reject_if: :all_blank
 

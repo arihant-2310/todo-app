@@ -1,0 +1,18 @@
+<div class="row justify-content-center mt-4">
+  <div class="col-12">
+    <%= form_with(model: comment, class: "shadow bg-white rounded p-3 mb-5") do |form| %>
+      <%= render 'shared/errors', obj: comment %>
+
+      <%= form.hidden_field :task_id %>
+
+      <div class="form-group mb-4">
+        <%= form.text_area :content, class: "form-control shadow rounded text-black-50", placeholder: "Write a comment here..." %>
+      </div>
+
+      <div class="d-grid">
+        <%= form.button "Create Comment", type: :submit, class: "btn btn-danger btn-block mb-4 btn-lg justify-content-center" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

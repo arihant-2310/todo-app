@@ -5,4 +5,5 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
   resources :tasks
+  resources :comments
 end

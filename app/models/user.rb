@@ -1,7 +1,8 @@
 class User < ApplicationRecord
-  has_many :tasks
+  has_many :tasks, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :assignments, dependent: :destroy
-  has_many :tasks, through: :assignments
+  has_many :tasks, through: :assignments, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]

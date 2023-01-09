@@ -1,29 +1,48 @@
-<h1 class="text-center mt-4"><%= @task.name %></h1>
-<div class="row justify-content-center">
-  <div class="col-8 mt-4">
-    <div class="card text-center shadow mb-5 bg-white rounded">
-      <div class="card-header">
-        <span>Created by <em><%= @task.user.full_name.titleize if @task.user %> <%= "(You)" if @task.user.email == current_user.email %></em></span>
-      </div>
-      <div class="card-body">
-        <div class="card-text"><%= simple_format(@task.description) %></div>
-        <p><%= @task.status %></p>
-        <% if @task.assignments.size != 0  %>
-          <p>Assigned to: <%= @task.assignments.first.user.email %> <%= "(self)" if @task.user.email == current_user.email %></p>
-        <% end %>
-        <%= link_to "Edit", edit_task_path(@task), class: "btn btn-outline-warning" %>
-        <%= link_to "Delete", task_path(@task), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
-      </div>
-      <div class="card-footer text-muted">
-        <small>
-          Created <%= time_ago_in_words(@task.created_at) %> ago,
-          Due on <%= time_ago_in_words(@task.due_date) if @task.due_date %>
-        </small>
+<div class="container">
+  <h1 class="text-center mt-4"><%= @task.name %></h1>
+  <div class="row justify-content-center">
+    <div class="col-8 mt-4">
+      <div class="card text-center shadow mb-5 bg-white rounded">
+        <div class="card-header">
+          <span>Created by <em><%= @task.user.full_name.titleize if @task.user %> <%= "(You)" if @task.user.email == current_user.email %></em></span>
+        </div>
+        <div class="card-body">
+          <div class="card-text"><%= simple_format(@task.description) %></div>
+          <p><%= @task.status %></p>
+          <% if @task.assignments.size != 0  %>
+            <p>Assigned to: <%= @task.assignments.first.user.email %> <%= "(self)" if @task.user.email == current_user.email %></p>
+          <% end %>
+          <%= link_to "Edit", edit_task_path(@task), class: "btn btn-outline-warning" %>
+          <%= link_to "Delete", task_path(@task), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+        </div>
+        <div class="card-footer text-muted">
+          <small>
+            Created <%= time_ago_in_words(@task.created_at) %> ago,
+            Due on <%= time_ago_in_words(@task.due_date) if @task.due_date %>
+          </small>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="text-center">
-  <%= link_to "[Back to tasks]", tasks_path, class: "text-decoration-none" %>
+  <div class="row justify-content-center mb-5">
+    <div class="col-8 mt-4">
+      <h4>Leave a comment</h4>
+      <%= render "comments/form", comment: @comment %>
+      <h4>Comments:</h4>
+      <div class="list-group mt-4">
+        <%- @task.comments.each do |comment|%>
+          <% if comment.id != nil %>
+            <div class="list-group-item list-group-item-action" aria-current="true">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-black-50"><%= comment.user.full_name if comment.user %></h5>
+                <small><%= time_ago_in_words(comment.created_at) %> ago</small>
+              </div>
+              <p class="mb-1"><%= comment.content %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

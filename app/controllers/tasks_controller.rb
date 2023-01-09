@@ -6,7 +6,9 @@ class TasksController < ApplicationController
     @tasks = Task.includes(:assignments).where(assignments: { user_id: current_user }).or(Task.where(user: current_user))
   end
 
-  def show; end
+  def show
+    @comment = @task.comments.build
+  end
 
   def new
     @task = Task.new
