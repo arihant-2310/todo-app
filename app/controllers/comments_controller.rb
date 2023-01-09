@@ -4,12 +4,10 @@ class CommentsController < ApplicationController
     @comment = @task.comments.new(comment_params)
     @comment.user = current_user
 
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment.task, notice: "Comment was successfully added." }
-      else
-        format.html { redirect_to @comment.task, alert: "Failed to post comment" }
-      end
+    if @comment.save
+      redirect_to @comment.task, notice: "Comment was successfully added."
+    else
+      redirect_to @comment.task, alert: "Failed to post comment"
     end
   end
 
