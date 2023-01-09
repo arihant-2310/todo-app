@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :assignments, dependent: :destroy
-  has_many :assigned_tasks, through: :assignments, source: :user
+  has_many :assigned_tasks, through: :assignments, source: :task
 
   devise :database_authenticatable, :registerable,
          :rememberable, :validatable,
