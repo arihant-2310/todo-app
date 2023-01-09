@@ -63,8 +63,12 @@ class TasksController < ApplicationController
     params.require(:task).permit(:name, :description, :due_date, :status, assignments_attributes: [:id, :user_id, :_destroy])
   end
 
+  def task_assigned?
+    @task.assignments.size != 0 && @task.assignments.first.user_id == current_user.id
+  end
+
   def require_same_user
-    return if current_user == @task.user
+    return if current_user == @task.user || task_assigned?
 
     redirect_to(tasks_path, alert: 'You can only view, edit or delete your own task')
   end
