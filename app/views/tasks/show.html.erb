@@ -3,7 +3,7 @@
   <div class="col-8 mt-4">
     <div class="card text-center shadow mb-5 bg-white rounded">
       <div class="card-header">
-        <span>Created by <%= @task.user.full_name.titleize if @task.user %></span>
+        <span>Created by <em><%= @task.user.full_name.titleize if @task.user %></em></span>
       </div>
       <div class="card-body">
         <div class="card-text"><%= simple_format(@task.description) %></div>
