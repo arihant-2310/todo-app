@@ -3,13 +3,13 @@
   <div class="col-8 mt-4">
     <div class="card text-center shadow mb-5 bg-white rounded">
       <div class="card-header">
-        <span>Created by <em><%= @task.user.full_name.titleize if @task.user %></em></span>
+        <span>Created by <em><%= @task.user.full_name.titleize if @task.user %> <%= "(You)" if @task.user.email == current_user.email %></em></span>
       </div>
       <div class="card-body">
         <div class="card-text"><%= simple_format(@task.description) %></div>
         <p><%= @task.status %></p>
         <% if @task.assignments.size != 0  %>
-          <p>Assigned to: <%= @task.assignments.first.user.email %></p>
+          <p>Assigned to: <%= @task.assignments.first.user.email %> <%= "(self)" if @task.user.email == current_user.email %></p>
         <% end %>
         <%= link_to "Edit", edit_task_path(@task), class: "btn btn-outline-warning" %>
         <%= link_to "Delete", task_path(@task), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
