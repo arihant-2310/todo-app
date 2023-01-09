@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :require_same_user, only: %i[edit update destroy show]
 
   def index
-    @tasks = Task.where(user: current_user)
+    @tasks = Task.includes(:assignments).where(assignments: { user_id: current_user }).or(Task.where(user: current_user))
   end
 
   def show; end
