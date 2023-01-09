@@ -16,4 +16,8 @@ class User < ApplicationRecord
       user.avatar_url = auth.info.image
     end
   end
+
+  def all_tasks
+    (tasks.all + assigned_tasks.all).uniq
+  end
 end
