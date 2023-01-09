@@ -20,8 +20,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
-    @task.user = current_user
+    @task = current_user.tasks.new(task_params)
 
     respond_to do |format|
       if @task.save
