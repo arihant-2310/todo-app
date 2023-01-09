@@ -54,7 +54,7 @@ class TasksController < ApplicationController
   end
 
   def task_assigned?
-    @task.assignments.size != 0 && @task.assignments.first.user_id == current_user.id
+    @task.assignees.include?(current_user)
   end
 
   def require_same_user
