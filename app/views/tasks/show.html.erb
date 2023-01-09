@@ -8,6 +8,9 @@
       <div class="card-body">
         <div class="card-text"><%= simple_format(@task.description) %></div>
         <p><%= @task.status %></p>
+        <% if @task.assignments.size != 0  %>
+          <p>Assigned to: <%= @task.assignments.first.user.email %></p>
+        <% end %>
         <%= link_to "Edit", edit_task_path(@task), class: "btn btn-outline-warning" %>
         <%= link_to "Delete", task_path(@task), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
       </div>
