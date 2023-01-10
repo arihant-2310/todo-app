@@ -9,6 +9,7 @@ describe Task, type: :model do
     end
 
     context 'description' do
+      it { should validate_presence_of(:description) }
       it { should validate_length_of(:description).is_at_least(10) }
       it { should validate_length_of(:description).is_at_most(150) }
     end
